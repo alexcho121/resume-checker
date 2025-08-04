@@ -1,0 +1,15 @@
+Junior Data Analyst - Entry Level
+
+We are seeking a motivated individual to join our analytics team.
+
+Requirements:
+- Strong skills in Python
+- Experience with SQL queries and data cleaning
+- Knowledge of data visualization tools (e.g., Tableau, PowerBI)
+- Familiarity with machine learning or statistical modeling is a plus
+- Bonus: Cloud computing experience (AWS, Azure)
+
+Responsibilities:
+- Analyze large datasets to identify trends
+- Build dashboards and reports for business units
+- Collaborate with data engineers and product managers

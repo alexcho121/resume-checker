@@ -1,0 +1,29 @@
+Alex Cho  
+Bachelor of Computer Engineering  
+Macquarie University  
+Expected Graduation: December 2025  
+
+Skills:
+- Python, C programming
+- VHDL and SystemVerilog for FPGA development
+- Hardware design and RTL coding
+- Computer architecture and embedded systems
+- Basic knowledge of Bash scripting and Git
+
+Projects:
+- High-Speed Trading Logic Simulation
+  - Built a latency-optimized data path using VHDL and SystemVerilog
+  - Simulated logic for low-latency processing
+
+- Autonomous Drone Control System
+  - Implemented sensor interface and feedback control in Python
+  - Integrated real-time response using FPGA-based components
+
+Experience:
+- Research Intern, Embedded Systems Lab (Macquarie)
+  - Designed and tested FPGA blocks for real-time video processing
+  - Focused on reducing latency in image signal chains
+
+Certifications:
+- AWS Cloud Practitioner (in progress)
+- Coursera: Digital Systems Design with VHDL

@@ -1,0 +1,71 @@
+import re
+import argparse
+
+def preprocess_text(text):
+    text=text.lower()
+    text=re.sub(r"[^a-z0-9\s]", "", text)
+    words=text.split()
+    return words
+
+def main():
+    parser=argparse.ArgumentParser()
+    #Create an ArgumentParser object
+    parser.add_argument("resume_file", help="Path to the resume text file")
+    parser.add_argument("job_file", help="Path to the job description text file")
+     # These are the "fields" in the form: resume_file and job_file
+    args=parser.parse_args()
+    try:
+        with open(args.resume_file, 'r', encoding='utf-8') as c:
+            resume_text=c.read()
+            if resume_text.strip()=="":
+                print("resume file is empty. ")
+                exit(1)
+
+    except FileNotFoundError:
+        print(f"Cannot found files: {args.resume_file}")
+        exit(1)   
+
+    try:     
+        with open(args.job_file, 'r', encoding='utf-8') as c:
+            job_text=c.read()
+            if job_text.strip()=="":
+                print("job file is empty. ")
+                exit(1)
+                
+    except FileNotFoundError:
+        print(f"Cannot found files: {args.job_file}")
+        exit(1)
+
+    print("Resume content: ")
+    print(resume_text[:200])
+
+    print("\n Job description: ")
+    print(job_text[:200])
+
+    resume_words=preprocess_text(resume_text)
+    job_words = preprocess_text(job_text)
+
+    print("\nProcessed Resume Words (20):")
+    print(resume_words[:20])
+
+    print("\nProcessed Job Words (20):")
+    print(job_words[:20])
+
+    resume_set = set(resume_words)
+    job_set = set(job_words)
+
+    matching_words = resume_set&job_set
+    missing_words = resume_set-job_set
+
+    if job_set:
+        match_rate=len(matching_words) / len(job_set) * 100
+    else:
+        match_rate=0
+
+    print(f"\n matching words: {sorted(list(matching_words))}")
+    print(f"\n missing words: {sorted(list(missing_words))}")
+    print(f"\n match rate: {match_rate:.2f}%")
+
+
+if __name__=="__main__":
+    main()
