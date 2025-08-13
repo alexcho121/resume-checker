@@ -1,11 +1,41 @@
 import re
 import argparse
 
+
+STOPWORDS = {
+     "a","an","the","and","or","but","to","of","for","in","on","with","by","at","from",
+    "as","is","are","be","this","that","it","its","your","you","we","our"
+}
+
+def singularize(w: str) -> str:
+
+    if len(w)<=2:
+        return w
+    
+    # -ies -> -y (policies -> policy)
+    if len(w)>3 and w.endswith("ies"):
+        return w[:-3] + "y"
+    
+    # remove -es (boxes -> box)
+    if len(w)>2 and w.endswith("es"):
+        return w[:-2] 
+    
+    # remove -s (skills -> skill)
+    if w.endswith(("ss","us","is")):
+        return w
+    
+    if len(w)>1 and w.endswith("s"):
+        return w[:-1]
+    
+    return w
+
 def preprocess_text(text):
     text=text.lower()
-    text=re.sub(r"[^a-z0-9\s]", "", text)
+    text=re.sub(r"[^a-z0-9\s]", " ", text)
     words=text.split()
-    return words
+    words = [w for w in words if w not in STOPWORDS]
+    normed=[singularize(w) for w in words if w]
+    return normed
 
 def main():
     parser=argparse.ArgumentParser()
@@ -22,7 +52,7 @@ def main():
                 exit(1)
 
     except FileNotFoundError:
-        print(f"Cannot found files: {args.resume_file}")
+        print(f"Cannot find files: {args.resume_file}")
         exit(1)   
 
     try:     
@@ -33,7 +63,7 @@ def main():
                 exit(1)
                 
     except FileNotFoundError:
-        print(f"Cannot found files: {args.job_file}")
+        print(f"Cannot find files: {args.job_file}")
         exit(1)
 
     print("Resume content: ")
@@ -55,7 +85,7 @@ def main():
     job_set = set(job_words)
 
     matching_words = resume_set&job_set
-    missing_words = resume_set-job_set
+    missing_words = job_set-resume_set
 
     if job_set:
         match_rate=len(matching_words) / len(job_set) * 100
