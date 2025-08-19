@@ -1,8 +1,9 @@
-Resume Checker
+# 📄 Resume Checker  
+_Check your resume against a job description in seconds_
 
 A small Python script that compares a resume text file and a job description text file to show overlapping keywords, missing keywords, and a simple match rate. The result is also saved as JSON.
 
-##Project Story
+## 📖 Project Story
 1) Why I started
 
 While preparing applications, I wanted a quick way to check:
@@ -42,7 +43,7 @@ No context/importance/experience-level understanding → not for precise judgmen
 
 Match rate can be skewed if general words slip in (no tech-only filter yet)
 
-##Features
+## ✨ Features
 
 Preprocessing: lowercasing, special-char removal, stopword removal, plural→singular
 
@@ -52,14 +53,14 @@ Output: saves results to resume_match_result.json
 
 Note: No context understanding or importance inference. It’s a checklist tool.
 
-##Usage
+## 🚀 Usage
 ```bash
 python resume_checker.py <resume_file> <job_description_file>
 
 python resume_checker.py data/resume.txt data/job.txt
 ```
 
-Output Example
+## 📊 Example Output
 ```bash
 matching words: ['python', 'sql']
 missing words: ['data']
@@ -77,13 +78,13 @@ resume_match_result.json
 }
 ```
 
-Tech
+## 🛠 Tech
 
 Python 3.x
 
 Standard library: argparse, re, json
 
-Next (Optional)
+## 🔮 Next (Optional)
 
 Show JD sentence snippets for each missing keyword
 
