@@ -1,5 +1,6 @@
 import re
 import argparse
+import json
 
 
 STOPWORDS = {
@@ -69,7 +70,7 @@ def main():
     print("Resume content: ")
     print(resume_text[:200])
 
-    print("\n Job description: ")
+    print("\nJob description: ")
     print(job_text[:200])
 
     resume_words=preprocess_text(resume_text)
@@ -92,9 +93,20 @@ def main():
     else:
         match_rate=0
 
-    print(f"\n matching words: {sorted(list(matching_words))}")
-    print(f"\n missing words: {sorted(list(missing_words))}")
-    print(f"\n match rate: {match_rate:.2f}%")
+    print(f"\nmatching words: {sorted(list(matching_words))}")
+    print(f"\nmissing words: {sorted(list(missing_words))}")
+    print(f"\nmatch rate: {match_rate:.2f}%")
+
+    result={
+        "matching_words":sorted(list(matching_words)),
+        "missing_words": sorted(list(missing_words)),
+        "match_rate": round(match_rate,2)
+    }
+
+    with open("resume_match_result.json", "w", encoding="utf-8") as f:
+        json.dump(result,f, ensure_ascii=False, indent=2)
+    
+    print("\n Saved JSON: resume_match_result.json")
 
 
 if __name__=="__main__":
